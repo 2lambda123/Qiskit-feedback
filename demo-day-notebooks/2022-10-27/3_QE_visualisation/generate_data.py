@@ -51,12 +51,14 @@ def generate_data():
 
 
 def generate_iq_data(
-    centres=[(8, 8), (-6.4, 1.6), (-2, 1.1)],
-    sigmas=[1, 1, 1],
+    centres=None,
+    sigmas=None,
     n_points=4096,
     n_relaxation=256,
 ):
     """Generate dummy IQ data, including a discriminator, for IQPlotter."""
+    centres = [(8, 8), (-6.4, 1.6), (-2, 1.1)] if centres is None else centres
+    sigmas = [1, 1, 1] if sigmas is None else sigmas
     data = {}
     for state, centre, sigma in zip(["0", "1", "2"], centres, sigmas):
         points_I = np.random.normal(centre[0], sigma, n_points)
